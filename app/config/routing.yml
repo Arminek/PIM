@@ -9,7 +9,7 @@ app_product_create:
 
 app_product_update:
     path: /pim/api/products/{id}
-    methods: [PUT]
+    methods: [PATCH]
     defaults:
         _controller: app.controller.product:updateAction
         _format: json

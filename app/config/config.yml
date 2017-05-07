@@ -108,7 +108,7 @@ old_sound_rabbit_mq:
     producers:
         pim:
             connection: default
-            exchange_options: { name: 'pim', type: fanout }
+            exchange_options: { name: 'store', type: fanout }
             service_alias: app.producer.pim
 
 jms_serializer:

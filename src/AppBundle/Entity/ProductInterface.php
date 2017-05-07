@@ -22,10 +22,10 @@ interface ProductInterface extends ResourceInterface
     /**
      * @param string $title
      */
-    public function setTitle(string $title);
+    public function setTitle(string $title): void;
 
     /**
      * @param Money $price
      */
-    public function setPrice(Money $price);
+    public function setPrice(Money $price): void;
 }

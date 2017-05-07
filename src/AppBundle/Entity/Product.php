@@ -50,7 +50,7 @@ final class Product implements ProductInterface
     /**
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -58,7 +58,7 @@ final class Product implements ProductInterface
     /**
      * @param Money $price
      */
-    public function setPrice(Money $price)
+    public function setPrice(Money $price): void
     {
         $this->price = $price;
     }
