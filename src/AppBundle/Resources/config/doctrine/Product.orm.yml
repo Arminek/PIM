@@ -1,0 +1,16 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: product
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            column: title
+            type: string
+            nullable: false
+        price:
+            column: price
+            type: money

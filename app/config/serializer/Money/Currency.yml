@@ -1,0 +1,10 @@
+Money\Currency:
+    exclusion_policy: NONE
+    xml_root_name: product
+    properties:
+        name:
+            expose: true
+            type: string
+            groups: [Default]
+        currencies:
+            exclude: true

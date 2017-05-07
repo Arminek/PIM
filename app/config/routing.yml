@@ -1,3 +1,31 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+app_product_create:
+    path: /pim/api/products
+    methods: [POST]
+    defaults:
+        _controller: app.controller.product:createAction
+        _format: json
+        _sylius:
+            serialization_groups: ['Default']
+
+app_product_update:
+    path: /pim/api/products/{id}
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.product:updateAction
+        _format: json
+
+app_product_delete:
+    path: /pim/api/products/{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.product:deleteAction
+        _format: json
+        _sylius:
+            csrf_protection: false
+
+app_product_show:
+    path: /pim/api/products/{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.product:showAction
+        _format: json

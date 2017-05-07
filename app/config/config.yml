@@ -49,6 +49,8 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
+        types:
+            money: Tbbc\MoneyBundle\Type\MoneyType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
@@ -68,3 +70,53 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+tbbc_money:
+    currencies: ['USD']
+    reference_currency: 'USD'
+    decimals: 2
+
+fos_rest:
+    disable_csrf_role: ROLE_API
+    view:
+        formats:
+            json: true
+            xml:  true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+
+sylius_resource:
+    resources:
+        app.product:
+            driver: doctrine/orm
+            classes:
+                model: AppBundle\Entity\Product
+                form: AppBundle\Form\Type\ProductType
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host: 127.0.0.1
+            port: 5672
+            user: 'guest'
+            password: 'guest'
+            vhost: '/'
+            lazy: false
+            connection_timeout: 3
+            read_write_timeout: 3
+    producers:
+        pim:
+            connection: default
+            exchange_options: { name: 'pim', type: fanout }
+            service_alias: app.producer.pim
+
+jms_serializer:
+    metadata:
+        directories:
+            app:
+                namespace_prefix: "AppBundle"
+                path: "@AppBundle/Resources/config/serializer"
+            money:
+                namespace_prefix: "Money"
+                path: "%kernel.root_dir%/config/serializer/Money"
